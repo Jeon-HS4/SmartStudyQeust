@@ -4,6 +4,10 @@ from rest_framework.decorators import api_view
 from .serializers import PageContentSerializer
 import requests
 from bs4 import BeautifulSoup
+import logging
+
+logger = logging.getLogger('test')
+
 
 @api_view(['GET'])
 def crawl_api(request):
@@ -21,7 +25,9 @@ def crawl_api(request):
 
         serializer = PageContentSerializer(data={'url': url, 'content': content})
         serializer.is_valid()
+                
         return Response(serializer.validated_data)
 
     except requests.exceptions.RequestException as e:
+        logger.error(e)
         return Response({'error': 'Error occurred: ' + str(e)}, status=500)
