@@ -7,7 +7,8 @@ function Crwal() {
 
   const handleCrawl = () => {
     // Django API URL
-    const apiUrl = 'http://localhost:8000/api/crawl/';
+    // const apiUrl = 'http://localhost:8000/api/crawl/';
+    const apiUrl = 'http://localhost:8000/api/gpt/';
 
     // API 요청
     axios.get(apiUrl, { params: { url } })
